@@ -34,8 +34,14 @@
 
             $result = $user -> where([["correo",$datos["correo"]]])
                             ->get();
+                            
             if( count( json_decode($result)) > 0){
                 $user_db = json_decode($result)[0];
+                if ($user_db->rol_id != 1){
+                    self::sessionDestroy();
+                    $this -> apiResponse(false, 'Error al iniciar sesión', null, 'No tienes permiso para iniciar sesión');
+                    exit();
+                }
                 if(password_verify($datos["contrasena"], $user_db->contrasena)){
                     $result = json_decode( $result );
                     // remplazamos la contraseña de result por la contraseña de datos
@@ -44,10 +50,12 @@
                 }else{
                     self::sessionDestroy();
                     $this -> apiResponse(false, 'Error al iniciar sesión', null, 'Contraseña incorrecta');
+                    exit();
                 }
             }else{
                 self::sessionDestroy();
                 $this -> apiResponse(false, 'Error al iniciar sesión', null, 'Usuario no encontrado');
+                exit();
             }
         }
 
