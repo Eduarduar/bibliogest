@@ -58,4 +58,20 @@
             }
         }
 
+        public function getCatalog(){
+            $users = new users();
+            try {
+                $result = $users -> getCatalogUsers();
+                $this->apiResponse(true, 'Usuarios obtenidos correctamente', json_decode($result));
+            } catch (\Throwable $th) {
+                $this->apiResponse(false, 'Error al obtener', null, $th->getMessage());
+            }
+        }
+
+        public static function getCatalogUsers(){
+            $users = new users();
+            $result = $users -> getCatalogUsers();
+            return $result;
+        }
+
     }

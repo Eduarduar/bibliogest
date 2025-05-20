@@ -4,6 +4,8 @@
     use app\classes\Views as View;
     use app\controllers\auth\LoginController as SC;
     use app\controllers\UsuariosController as UC;
+    use app\controllers\PrestamosController as PC;
+    use app\controllers\LibrosController as LC;
     class DashboardController extends Controller {
 
         public function __construct(){
@@ -52,6 +54,9 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
+            $response['libros'] = LC::getCatalog();
+            $response['usuarios'] = UC::getCatalogUsers();
+            $response['prestamos'] = PC::getAllPrestamos();
             View::render('Dashboard/prestamos/prestamos',$response);
         }
 

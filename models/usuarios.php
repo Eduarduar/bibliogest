@@ -58,5 +58,11 @@
             ]);
         }
 
+        public function getCatalogUsers(){
+            $result = $this -> select( ['id','nombre','correo']) 
+                            -> orderBy( [['id','asc']] )
+                            -> get();
+            return $result;
+        }
 
     }
