@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tailwind": "tailwindcss -i ./public/assets/css/input.css -o ./public/assets/css/tailwind.css --watch"  
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduarduar/bibliogest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Eduarduar/bibliogest/issues"
+  },
+  "homepage": "https://github.com/Eduarduar/bibliogest#readme",
+  "dependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
