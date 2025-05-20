@@ -18,6 +18,14 @@ const app = {
       addUser: "/usuarios/addUser",
       toggleUser: "/usuarios/toggleUser",
       editUser: "/usuarios/editUser"
+    },
+    prestamos: {
+      getAllPrestamos: "/prestamos/getAll",
+      createPrestamo: "/prestamos/createPrestamo",
+      togglePrestamo: "/prestamos/togglePrestamo",
+    },
+    libros: {
+      getCatalogBooks: "/libros/getCatalogBooks",
     }
   },
   user: {
