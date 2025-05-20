@@ -66,7 +66,17 @@ class DB {
         $this->w = "";
         if (count($ww) > 0) {
             foreach ($ww as $wheres) {
-                $this->w .= $wheres[0] . " like '" . $wheres[1] . "' and ";
+                $col = $wheres[0];
+                $val = $wheres[1];
+    
+                if (is_bool($val)) {
+                    $val = $val ? 'true' : 'false';
+                    $this->w .= "$col = $val and ";
+                } elseif (is_numeric($val)) {
+                    $this->w .= "$col = $val and ";
+                } else {
+                    $this->w .= "$col like '$val' and ";
+                }
             }
             $this->w = rtrim($this->w, ' and');
         }
@@ -101,7 +111,7 @@ class DB {
                     $this->c .
                     " FROM " . $table .
                     ($this->j != "" ? " a " . $this->j : "") .
-                    " WHERE " . $this->w .
+                    ($this->w != ' 1 ' ? " WHERE " . $this->w : '') .
                     $this->o .
                     $this->l;
     
@@ -141,4 +151,45 @@ class DB {
         $sql = "DELETE FROM $table WHERE " . $this->w;
         return $this->table->exec($sql);
     }    
+
+    public function update(array $data) {
+        $table = strtolower(str_replace("app\\models\\", "", get_class($this)));
+    
+        if (empty($data)) {
+            throw new \Exception("No se proporcionaron datos para actualizar.");
+        }
+    
+        $setParts = [];
+        $values = [];
+    
+        foreach ($data as $column => $value) {
+            $setParts[] = "$column = ?";
+            $values[] = $value;
+        }
+    
+        $setClause = implode(', ', $setParts);
+    
+        if (trim($this->w) === "" || trim($this->w) === "1") {
+            throw new \Exception("La cláusula WHERE es obligatoria para realizar un UPDATE.");
+        }
+    
+        $sql = "UPDATE $table SET $setClause WHERE " . $this->w;
+
+        
+        $stmt = $this->table->prepare($sql);
+        foreach ($values as $i => $val) {
+            if (is_bool($val)) {
+                $stmt->bindValue($i + 1, $val, \PDO::PARAM_BOOL);
+            } elseif (is_int($val)) {
+                $stmt->bindValue($i + 1, $val, \PDO::PARAM_INT);
+            } else {
+                $stmt->bindValue($i + 1, $val, \PDO::PARAM_STR);
+            }
+        }
+        $stmt->execute();        
+    
+        return $data;
+    }
+    
+    
 }
