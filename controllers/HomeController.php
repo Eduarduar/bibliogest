@@ -2,7 +2,7 @@
 
     namespace app\controllers;
     use app\classes\Views as View;
-    use app\controllers\auth\SessionController as SC;
+    use app\controllers\auth\LoginController as SC;
     class HomeController extends Controller {
 
         public function __construct(){
@@ -13,7 +13,7 @@
             $response = [
                         'ua' => SC::sessionValidate() ?? [ 'sv' => 0 ],
                         'code'   => 200,
-                        'title'  => 'Foro Fie 2025'
+                        'title'  => 'BiblioGest'
                         ];
             View::render('home',$response);
         }
