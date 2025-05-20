@@ -9,9 +9,17 @@
             parent::__construct();
         }
 
+        public function validateSession(){
+            $ua = SC::sessionValidate() ?? [ 'sv' => 0 ];
+            if($ua['sv'] == 0){
+                SC::logout();
+            }
+            return $ua;
+        }
+
         public function index($params = null){
             $response = [
-                        'ua' => SC::sessionValidate() ?? [ 'sv' => 0 ],
+                        'ua' => $this -> validateSession(),
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
@@ -20,7 +28,7 @@
 
         public function libros($params = null){
             $response = [
-                        'ua' => SC::sessionValidate() ?? [ 'sv' => 0 ],
+                        'ua' => $this -> validateSession(),
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
@@ -29,7 +37,7 @@
 
         public function usuarios($params = null){
             $response = [
-                        'ua' => SC::sessionValidate() ?? [ 'sv' => 0 ],
+                        'ua' => $this -> validateSession(),
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
@@ -38,7 +46,7 @@
 
         public function prestamos($params = null){
             $response = [
-                        'ua' => SC::sessionValidate() ?? [ 'sv' => 0 ],
+                        'ua' => $this -> validateSession(),
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
@@ -47,7 +55,7 @@
 
         public function reportes($params = null){
             $response = [
-                        'ua' => SC::sessionValidate() ?? [ 'sv' => 0 ],
+                        'ua' => $this -> validateSession(),
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];

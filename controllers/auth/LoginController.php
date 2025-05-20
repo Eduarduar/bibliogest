@@ -106,7 +106,7 @@
             return;
         }
 
-        public function logout(){
+        public static function logout(){
             self::sessionDestroy();
             Redirect::to('/login');
             exit();

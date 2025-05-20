@@ -13,7 +13,7 @@ function setHeader($args){
     // obtener url actual
     $url = $_SERVER['REQUEST_URI'];
     $url = explode('/', $url);
-    $url = $url[2];
+    $url = (isset($url[2]) && $url[2] != '') ? $url[2] : $url[1];
     
 ?>
 <!DOCTYPE html>
@@ -35,10 +35,10 @@ function setHeader($args){
                 <img src="<?= ASSETS ?>img/logo.png" class="w-32" alt="Logo">
             </div>
             <nav class="flex flex-col p-4 space-y-2">
-                <a href="/dashboard/libros" class="flex items-center px-4 py-2 rounded transition-all transform hover:scale-110 hover:ease-in-out hover:bg-[#e6942c] hover:text-[#ffe6c8] <?= (strpos($url, 'libros') !== false) ? 'bg-[#ffefdd] text-[#e6942c]' : '' ?>"><i class="bi bi-house mr-2"></i> Libros</a>
-                <a href="/dashboard/usuarios" class="flex items-center px-4 py-2 rounded transition-all transform hover:scale-110 hover:ease-in-out hover:bg-[#e6942c] hover:text-[#ffe6c8] <?= (strpos($url, 'usuarios') !== false) ? 'bg-[#ffefdd] text-[#e6942c]' : '' ?>"><i class="bi bi-graph-up mr-2"></i> Usuarios</a>
-                <a href="/dashboard/prestamos" class="flex items-center px-4 py-2 rounded transition-all transform hover:scale-110 hover:ease-in-out hover:bg-[#e6942c] hover:text-[#ffe6c8] <?= (strpos($url, 'prestamos') !== false) ? 'bg-[#ffefdd] text-[#e6942c]' : '' ?>"><i class="bi bi-gear mr-2"></i> Prestamos</a>
-                <a href="/dashboard/reportes" class="flex items-center px-4 py-2 rounded transition-all transform hover:scale-110 hover:ease-in-out hover:bg-[#e6942c] hover:text-[#ffe6c8] <?= (strpos($url, 'reportes') !== false) ? 'bg-[#ffefdd] text-[#e6942c]' : '' ?>"><i class="bi bi-bar-chart-line mr-2"></i> Reportes</a>
+                <a href="/dashboard/libros" class="flex items-center px-4 py-2 rounded transition-all transform hover:scale-110 hover:ease-in-out <?= (strpos($url, 'libros') !== false) ? 'bg-[#fff5dd] text-[#e6942c]' : 'hover:bg-[#e6942c] hover:text-[#ffe6c8]' ?>"><i class="bi bi-house mr-2"></i> Libros</a>
+                <a href="/dashboard/usuarios" class="flex items-center px-4 py-2 rounded transition-all transform hover:scale-110 hover:ease-in-out <?= (strpos($url, 'usuarios') !== false) ? 'bg-[#fff5dd] text-[#e6942c]' : 'hover:bg-[#e6942c] hover:text-[#ffe6c8]' ?>"><i class="bi bi-graph-up mr-2"></i> Usuarios</a>
+                <a href="/dashboard/prestamos" class="flex items-center px-4 py-2 rounded transition-all transform hover:scale-110 hover:ease-in-out <?= (strpos($url, 'prestamos') !== false) ? 'bg-[#fff5dd] text-[#e6942c]' : 'hover:bg-[#e6942c] hover:text-[#ffe6c8]' ?>"><i class="bi bi-gear mr-2"></i> Prestamos</a>
+                <a href="/dashboard/reportes" class="flex items-center px-4 py-2 rounded transition-all transform hover:scale-110 hover:ease-in-out <?= (strpos($url, 'reportes') !== false) ? 'bg-[#fff5dd] text-[#e6942c]' : 'hover:bg-[#e6942c] hover:text-[#ffe6c8]' ?>"><i class="bi bi-bar-chart-line mr-2"></i> Reportes</a>
             </nav>
             <div class="flex items-center h-full justify-center w-full">
                 <!-- // texto de agradecimiento -->
@@ -68,7 +68,7 @@ function setHeader($args){
 
                     <!-- Dropdown -->
                     <div id="user-dropdown" class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-[#e6942c] hidden z-50">
-                        <a href="/salir" class="block px-4 py-2 text-sm text-[#e6942c] hover:bg-[#ffe6c8] transition-colors duration-150">
+                        <a href="/login/logout" class="block px-4 py-2 text-sm text-[#e6942c] hover:bg-[#ffe6c8] transition-colors duration-150">
                             <i class="bi bi-box-arrow-right mr-2"></i> Cerrar sesión
                         </a>
                     </div>
