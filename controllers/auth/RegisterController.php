@@ -4,8 +4,7 @@ namespace app\controllers\auth;
 
 use app\controllers\Controller as Controller;
 use app\classes\Views as View;
-use app\models\user as user;
-use app\controllers\auth\SessionController as SC;
+use app\models\usuarios as user;
 
 class RegisterController extends Controller
 {
@@ -26,9 +25,11 @@ class RegisterController extends Controller
 
     public function register($params = null) {
         $user = new user();
-        $result = $user->newUser(filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS));
-        echo json_encode([
-            'r' => $result
-        ]);
+        try {
+            $result = $user->newUser(filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS));
+            $this->apiResponse(true, 'Usuario registrado correctamente', $result);
+        } catch (\Throwable $th) {
+            $this->apiResponse(false, 'Error al registrar', null, $th->getMessage());
+        }
     }
 }

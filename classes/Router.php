@@ -51,8 +51,7 @@ class Router
             unset($this->uri[0]);
         }
         $controller = ucfirst($controller);
-        if ($controller == 'Session') $controller = "auth\\Session";
-        if ($controller == 'Register') $controller = "auth\\Register";
+        if ($controller == 'Login' or $controller == 'Register') $controller = "auth\\" . $controller;
         $controller = 'app\controllers\\' . $controller . 'Controller';
         return $controller;
     }
