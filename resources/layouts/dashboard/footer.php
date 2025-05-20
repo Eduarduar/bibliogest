@@ -1,11 +1,9 @@
 <?php
 function setFooter($args){
 ?>
-    <script src="<?=JS?>jquery.js"></script>
     <script src="<?=JS?>bootstrap.js"></script>
+    <script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
     <script src="<?=JS?>sweetalert2.js"></script>
-    <script src="<?=JS?>app.js"></script>
-
     <!-- Script para toggle del sidebar en móviles -->
     <script>
         function toggleSidebar() {

@@ -3,6 +3,7 @@
     namespace app\controllers;
     use app\classes\Views as View;
     use app\controllers\auth\LoginController as SC;
+    use app\controllers\UsuariosController as UC;
     class DashboardController extends Controller {
 
         public function __construct(){
@@ -23,7 +24,7 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
-            View::render('Dashboard/dasboard',$response);
+            View::render('Dashboard/dashboard',$response);
         }
 
         public function libros($params = null){
@@ -32,7 +33,7 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
-            View::render('Dashboard/libros',$response);
+            View::render('Dashboard/libros/libros',$response);
         }
 
         public function usuarios($params = null){
@@ -41,7 +42,8 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
-            View::render('Dashboard/usuarios',$response);
+            $response['usuarios'] = UC::getAllUsers();
+            View::render('Dashboard/usuarios/usuarios',$response);
         }
 
         public function prestamos($params = null){
@@ -50,7 +52,7 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
-            View::render('Dashboard/prestamos',$response);
+            View::render('Dashboard/prestamos/prestamos',$response);
         }
 
         public function reportes($params = null){
@@ -59,7 +61,7 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
-            View::render('Dashboard/reportes',$response);
+            View::render('Dashboard/reportes/reportes',$response);
         }
 
     }

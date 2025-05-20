@@ -12,6 +12,12 @@ const app = {
     },
     dashboard: {
       index: "/dashboard"
+    },
+    usuarios: {
+      getAllUsers: "/usuarios/getAll",
+      addUser: "/usuarios/addUser",
+      toggleUser: "/usuarios/toggleUser",
+      editUser: "/usuarios/editUser"
     }
   },
   user: {
