@@ -3,7 +3,12 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', __DIR__ . DS);
 
-define('IS_LOCAL', in_array($_SERVER['REMOTE_ADDR'],['127.0.0.1','::1']) ? true : false );
+// Detecta entorno Render usando la variable de entorno 'RENDER', si existe es producción/remoto
+if (getenv('RENDER') !== false || getenv('RENDER_EXTERNAL_URL') !== false) {
+    define('IS_LOCAL', false);
+} else {
+    define('IS_LOCAL', in_array($_SERVER['REMOTE_ADDR'],['127.0.0.1','::1']) ? true : false );
+}
 define('PORT', IS_LOCAL ? '80' : '0000');
 define('URL', IS_LOCAL ? '127.0.0.6:'. PORT . DS : 'https://bibliogest.onrender.com');
 
