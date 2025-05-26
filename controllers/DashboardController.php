@@ -8,6 +8,7 @@
     use app\controllers\LibrosController as LC;
     use app\controllers\CategoriasController as CC;
     use app\controllers\AutoresController as AC;
+    use app\classes\Redirect;
     class DashboardController extends Controller {
 
         public function __construct(){
@@ -28,7 +29,7 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
-            View::render('dashboard/dashboard',$response);
+            Redirect::to('/dashboard/libros');
         }
 
         public function libros($params = null){
