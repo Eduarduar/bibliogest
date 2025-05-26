@@ -23,7 +23,7 @@ RUN chown -R www-data:www-data /var/www/html/app && \
 EXPOSE 80
 
 # Variables de entorno recomendadas para producción (ajusta si es necesario)
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/app
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/app/public
 
 # Cambiar el DocumentRoot de Apache
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
