@@ -24,7 +24,6 @@
                 <select name="rol_id" id="rolCrear" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#e6942c]" required>
                     <option value="" disabled selected>Seleccionar rol</option>
                     <option value="1">Admin</option>
-                    <option value="2">Bibliotecario</option>
                     <option value="3">Lector</option>
                 </select>
             </div>

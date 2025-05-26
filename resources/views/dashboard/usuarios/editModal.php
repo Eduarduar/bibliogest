@@ -20,7 +20,6 @@
                 <label class="block mb-1 text-sm font-semibold">Rol</label>
                 <select name="rol_id" id="rolEditar" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#e6942c]" required>
                     <option value="1">Admin</option>
-                    <option value="2">Bibliotecario</option>
                     <option value="3">Lector</option>
                 </select>
             </div>

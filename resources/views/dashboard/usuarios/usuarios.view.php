@@ -182,7 +182,6 @@
                 <td class="px-4 py-3">${u.correo}</td>
                 <td class="px-4 py-3">${
                     u.rol === "admin" ? "Admin" :
-                    u.rol === "bibliotecario" ? "Bibliotecario" :
                     u.rol === "lector" ? "Lector" : "Desconocido"
                 }</td>
                 <td class="px-4 py-3">${u.fecha_registro}</td>
