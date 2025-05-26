@@ -28,7 +28,7 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
-            View::render('Dashboard/dashboard',$response);
+            View::render('dashboard/dashboard',$response);
         }
 
         public function libros($params = null){
@@ -40,7 +40,7 @@
             $response['categorias'] = CC::getAllCategorias();
             $response['autores'] = AC::getAllAutores();
             $response['libros'] = LC::getAllBooks();
-            View::render('Dashboard/libros/libros',$response);
+            View::render('dashboard/libros/libros',$response);
         }
 
         public function usuarios($params = null){
@@ -50,7 +50,7 @@
                         'title'  => 'BiblioGest'
                         ];
             $response['usuarios'] = UC::getAllUsers();
-            View::render('Dashboard/usuarios/usuarios',$response);
+            View::render('dashboard/usuarios/usuarios',$response);
         }
 
         public function prestamos($params = null){
@@ -62,7 +62,7 @@
             $response['libros'] = LC::getCatalog();
             $response['usuarios'] = UC::getCatalogUsers();
             $response['prestamos'] = PC::getAllPrestamos();
-            View::render('Dashboard/prestamos/prestamos',$response);
+            View::render('dashboard/prestamos/prestamos',$response);
         }
 
         public function categorias($params = null){
@@ -72,7 +72,7 @@
                         'title'  => 'BiblioGest'
                         ];
             $response['categorias'] = CC::getAllCategorias();
-            View::render('Dashboard/categorias/categorias',$response);
+            View::render('dashboard/categorias/categorias',$response);
         }
 
         public function autores($params = null){
@@ -82,7 +82,7 @@
                         'title'  => 'BiblioGest'
                         ];
             $response['autores'] = AC::getAllAutores();
-            View::render('Dashboard/autores/autores',$response);
+            View::render('dashboard/autores/autores',$response);
         }
 
     }
