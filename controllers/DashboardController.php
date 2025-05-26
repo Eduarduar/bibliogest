@@ -6,6 +6,8 @@
     use app\controllers\UsuariosController as UC;
     use app\controllers\PrestamosController as PC;
     use app\controllers\LibrosController as LC;
+    use app\controllers\CategoriasController as CC;
+    use app\controllers\AutoresController as AC;
     class DashboardController extends Controller {
 
         public function __construct(){
@@ -35,6 +37,9 @@
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
+            $response['categorias'] = CC::getAllCategorias();
+            $response['autores'] = AC::getAllAutores();
+            $response['libros'] = LC::getAllBooks();
             View::render('Dashboard/libros/libros',$response);
         }
 
@@ -60,13 +65,24 @@
             View::render('Dashboard/prestamos/prestamos',$response);
         }
 
-        public function reportes($params = null){
+        public function categorias($params = null){
             $response = [
                         'ua' => $this -> validateSession(),
                         'code'   => 200,
                         'title'  => 'BiblioGest'
                         ];
-            View::render('Dashboard/reportes/reportes',$response);
+            $response['categorias'] = CC::getAllCategorias();
+            View::render('Dashboard/categorias/categorias',$response);
+        }
+
+        public function autores($params = null){
+            $response = [
+                        'ua' => $this -> validateSession(),
+                        'code'   => 200,
+                        'title'  => 'BiblioGest'
+                        ];
+            $response['autores'] = AC::getAllAutores();
+            View::render('Dashboard/autores/autores',$response);
         }
 
     }

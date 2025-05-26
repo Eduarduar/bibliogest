@@ -114,7 +114,7 @@ class DB {
                     ($this->w != ' 1 ' ? " WHERE " . $this->w : '') .
                     $this->o .
                     $this->l;
-    
+                    
         $stmt = $this->table->query($sql);
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
     
