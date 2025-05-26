@@ -26,6 +26,9 @@ const app = {
     },
     libros: {
       getCatalogBooks: "/libros/getCatalogBooks",
+      addBook: "/libros/addBook",
+      toggleBook: "/libros/toggleBook",
+      editBook: "/libros/editBook"
     }
   },
   user: {
