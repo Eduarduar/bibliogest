@@ -4,18 +4,32 @@
     use app\models\prestamos as prestamos;
     use app\controllers\PrestamosLibrosController as PLC;
 
+    /**
+     * Controlador para la gestión de préstamos.
+     */
     class PrestamosController extends Controller {
 
+        /**
+         * Constructor. Inicializa el controlador.
+         */
         public function __construct(){
             parent::__construct();
         }
 
+        /**
+         * Obtiene todos los préstamos (estático, para uso interno de otros controladores).
+         * @return array Lista de préstamos
+         */
         public static function getAllPrestamos(){
             $prestamos = new prestamos();
             $result = $prestamos -> getAll();
             return $result;
         }   
 
+        /**
+         * Endpoint API: Devuelve todos los préstamos en formato JSON.
+         * @return void
+         */
         public function getAll(){
             $prestamos = new prestamos();
             try {
@@ -26,6 +40,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Crea un nuevo préstamo y su relación con libros.
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function createPrestamo($params = null){
             $prestamos = new prestamos();
             try {
@@ -46,6 +65,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Cambia el estado de un préstamo (por ejemplo, marcar como devuelto).
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function togglePrestamo( $params = null){
             $prestamos = new prestamos();
             try {

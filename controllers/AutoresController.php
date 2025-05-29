@@ -3,18 +3,33 @@
     namespace app\controllers;
     use app\models\autores as autores;
 
+    /**
+     * Controlador para la gestión de autores.
+     * Permite obtener, crear y editar autores mediante endpoints API.
+     */
     class AutoresController extends Controller {
 
+        /**
+         * Constructor. Inicializa el controlador.
+         */
         public function __construct(){
             parent::__construct();
         }
 
+        /**
+         * Obtiene todos los autores (estático, para uso interno de otros controladores).
+         * @return array Lista de autores
+         */
         public static function getAllAutores(){
             $autores = new autores();
             $result = $autores -> getAll();
             return $result;
         }   
 
+        /**
+         * Endpoint API: Devuelve todos los autores en formato JSON.
+         * @return void
+         */
         public function getAll(){
             $autores = new autores();
             try {   
@@ -25,6 +40,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Crea un nuevo autor a partir de los datos recibidos por POST.
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function createAutor($params = null){
             $autores = new autores();
             try {
@@ -36,6 +56,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Edita un autor existente con los datos recibidos por POST.
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function editAutor($params = null){
             $autores = new autores();
             try {

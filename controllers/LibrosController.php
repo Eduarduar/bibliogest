@@ -3,24 +3,42 @@
     namespace app\controllers;
     use app\models\libros as libros;
 
+    /**
+     * Controlador para la gestión de libros.
+     */
     class LibrosController extends Controller {
 
+        /**
+         * Constructor. Inicializa el controlador.
+         */
         public function __construct(){
             parent::__construct();
         }
 
+        /**
+         * Obtiene el catálogo de libros (estático, para uso interno de otros controladores).
+         * @return array Catálogo de libros
+         */
         public static function getCatalog(){
             $libros = new libros();
             $result = $libros -> getCatalog();
             return $result;
         }
 
+        /**
+         * Obtiene todos los libros (estático, para uso interno de otros controladores).
+         * @return array Lista de libros
+         */
         public static function getAllBooks(){
             $libros = new libros();
             $result = $libros -> getAll();
             return $result;
         }
 
+        /**
+         * Endpoint API: Devuelve todos los libros en formato JSON.
+         * @return void
+         */
         public function getAll(){
             $libros = new libros();
             try {
@@ -31,6 +49,10 @@
             }
         }
 
+        /**
+         * Endpoint API: Devuelve el catálogo de libros en formato JSON.
+         * @return void
+         */
         public function getCatalogBooks(){
             $libros = new libros();
             try {
@@ -41,6 +63,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Crea un nuevo libro a partir de los datos recibidos por POST.
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function createBook($params = null){
             $libros = new libros();
             try {
@@ -52,6 +79,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Edita un libro existente con los datos recibidos por POST.
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function editBook( $params = null){
             $libros = new libros();
             try {

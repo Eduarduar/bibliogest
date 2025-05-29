@@ -71,7 +71,7 @@
             $_SESSION['contrasena'] = $datos[0]->contrasena;
             unset($datos[0]->contrasena);
             session_write_close();
-            $this -> apiResponse(true, 'Inicio de sesión exitoso', $datos[0]);
+            $this -> apiResponse(true, 'Inicio de sesión éxitoso', $datos[0]);
         }
 
         public static function sessionValidate(){

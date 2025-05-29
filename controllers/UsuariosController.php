@@ -3,19 +3,32 @@
     namespace app\controllers;
     use app\models\usuarios as users;
 
+    /**
+     * Controlador para la gestión de usuarios.
+     */
     class UsuariosController extends Controller {
 
+        /**
+         * Constructor. Inicializa el controlador.
+         */
         public function __construct(){
             parent::__construct();
         }
 
-
+        /**
+         * Obtiene todos los usuarios (estático, para uso interno de otros controladores).
+         * @return array Lista de usuarios
+         */
         public static function getAllUsers(){
             $users = new users();
             $result = $users -> getAllUsers();
             return $result;
         }
         
+        /**
+         * Endpoint API: Devuelve todos los usuarios en formato JSON.
+         * @return void
+         */
         public function getAll(){
             $users = new users();
             try {
@@ -26,6 +39,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Registra un nuevo usuario a partir de los datos recibidos por POST.
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function addUser($params = null) {
             $user = new users();
             try {
@@ -36,6 +54,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Edita un usuario existente con los datos recibidos por POST.
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function editUser($params = null){
             $user = new users();
             try {
@@ -46,6 +69,11 @@
             }
         }
 
+        /**
+         * Endpoint API: Cambia el estado de un usuario (habilitar o deshabilitar).
+         * @param mixed $params Parámetros de la petición (opcional)
+         * @return void
+         */
         public function toggleUser($params = null){
             $user = new users();
             try {
@@ -58,6 +86,10 @@
             }
         }
 
+        /**
+         * Endpoint API: Devuelve el catálogo de usuarios activos en formato JSON.
+         * @return void
+         */
         public function getCatalog(){
             $users = new users();
             try {
