@@ -67,7 +67,7 @@ setFooter($d);
                         app.setLocalUser({data: res.data});
                         Swal.fire({
                             icon: 'success',
-                            title: 'Exito',
+                            title: 'Éxito',
                             text: res.message,
                         }).then(() => {
                             window.location.href = app.routes.dashboard.index;

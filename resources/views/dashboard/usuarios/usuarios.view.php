@@ -138,7 +138,7 @@
                     if (data.success) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Exito',
+                            title: 'Éxito',
                             text: data.message,
                         });
                         actualizarUsuarios();
