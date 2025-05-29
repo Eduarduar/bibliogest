@@ -45,15 +45,32 @@
          * @param mixed $params Parámetros de la petición (opcional)
          * @return void
          */
-        public function createPrestamo($params = null){
+        public function createPrestamo($params = null) {
             $prestamos = new prestamos();
             try {
                 $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+        
+                // ✅ Convertir fechas al formato YYYY-MM-DD
+                if (!empty($data['fecha_prestamo'])) {
+                    $fecha = \DateTime::createFromFormat('d-m-Y', $data['fecha_prestamo']);
+                    if ($fecha) {
+                        $data['fecha_prestamo'] = $fecha->format('Y-m-d');
+                    }
+                }
+        
+                if (!empty($data['fecha_devolucion'])) {
+                    $fecha = \DateTime::createFromFormat('d-m-Y', $data['fecha_devolucion']);
+                    if ($fecha) {
+                        $data['fecha_devolucion'] = $fecha->format('Y-m-d');
+                    }
+                }
+        
                 $data['fecha_entrega'] = null;
-                $result = $prestamos -> createPrestamo($data);
+        
+                $result = $prestamos->createPrestamo($data);
                 if ($result) {
                     $plc = new PLC();
-                    $plc -> createPrestamoLibro([
+                    $plc->createPrestamoLibro([
                         'prestamo_id' => $result['id'],
                         'libro_id' => $data['libro_id'],
                         'cantidad' => $data['cantidad'],
@@ -64,6 +81,7 @@
                 $this->apiResponse(false, 'Error al crear', null, $th->getMessage());
             }
         }
+        
 
         /**
          * Endpoint API: Cambia el estado de un préstamo (por ejemplo, marcar como devuelto).
